@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users.apps.UsersConfig',
+    'past_questions.apps.PastQuestionsConfig',
 
     'rest_framework',
 ]
