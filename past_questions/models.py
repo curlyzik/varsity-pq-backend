@@ -19,7 +19,6 @@ class Faculty(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=50)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, blank=True, null=True)
-    level = models.ForeignKey("Level", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self) -> str:
         return f"{self.name} in {self.faculty}"
@@ -39,7 +38,9 @@ class Level(models.Model):
         (500, '500')
     )
     level = models.PositiveIntegerField(choices=LEVEL_CHOICES)
-    semester = models.ForeignKey("Semester", on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return f"{self.level}"
 
 class Semester(models.Model):
     SEMESTER_CHOICES = (
@@ -47,10 +48,26 @@ class Semester(models.Model):
             ("2", "2nd Semester")
         )
     semester = models.CharField(max_length=50, choices=SEMESTER_CHOICES, default="1")
-    courses = models.ForeignKey("Course", on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self) -> str:
+        if self.semester == "1":
+            return f"{self.semester}st Semester"
+        return f"{self.semester}nd Semester"
 
 class Course(models.Model):
     name = models.CharField(max_length=250)
-    
+    course_code = models.CharField(max_length=50, blank=True, null=True)
+    level = models.ForeignKey("Level", on_delete=models.CASCADE, blank=True, null=True)
+    department = models.ForeignKey("Department", on_delete=models.CASCADE, blank=True, null=True)
+    semester = models.ForeignKey("Semester", on_delete=models.CASCADE, blank=True, null=True)
+    year = models.ForeignKey("Year", on_delete=models.CASCADE, blank=True, null=True)
+
     def __str__(self) -> str:
-        return self.name
+        return f"{self.course_code}/{self.name} - {self.level} level - {self.department} - {self.semester} - {self.year} session"
+
+class Past_Question(models.Model):
+    file = models.FileField(upload_to=None, max_length=100)
+    course = models.ForeignKey("Course", on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return f"{self.course.course_code} past question" 
