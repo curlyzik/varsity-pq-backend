@@ -1,11 +1,11 @@
-from django.db.models import fields
 from rest_framework import serializers
 
-from .models import (Course, Department, Faculty, Level, Past_Question, Semester, University,
-                     Year)
+from .models import (Course, Department, Faculty, Level, PastQuestion,
+                     Semester, University, Year)
+
 
 class FacultySerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = Faculty
         fields = ['name']
@@ -21,6 +21,7 @@ class UniversitySerializer(serializers.ModelSerializer):
         return obj.faculty.name
 
 class DepartmentSerializer(serializers.ModelSerializer):
+    faculty = FacultySerializer()
 
     class Meta:
         model = Department
@@ -30,28 +31,33 @@ class YearSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Year
-        fields = '__all__'
+        fields = ['year']
 
 class LevelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Level
-        fields = '__all__'
+        fields = ['level']
 
 class SemesterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Semester
-        fields = '__all__'
+        fields = ['semester']
 
 class CourseSerializer(serializers.ModelSerializer):
+    university = UniversitySerializer()
+    department = DepartmentSerializer()
+    year = YearSerializer()
+    level = LevelSerializer()
+    semester = Semester()
 
     class Meta:
         model = Course
         fields = '__all__'
-
+    
 class PastQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Past_Question
+        model = PastQuestion
         fields = '__all__'

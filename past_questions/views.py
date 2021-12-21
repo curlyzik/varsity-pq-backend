@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from rest_framework import viewsets
 
-from past_questions.models import Course, Department, Faculty, Level, Past_Question, Semester, University, Year
+from past_questions.models import Course, Department, Faculty, Level, PastQuestion, Semester, University, Year
 from past_questions.serializers import CourseSerializer, FacultySerializer, LevelSerializer, PastQuestionSerializer, SemesterSerializer, UniversitySerializer, DepartmentSerializer, YearSerializer
 
 # Create your views here.
@@ -36,5 +36,5 @@ class CourseViewSets(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
 
 class PastQuestionViewSets(viewsets.ModelViewSet):
-    queryset = Past_Question.objects.all()
+    queryset = PastQuestion.objects.all()
     serializer_class = PastQuestionSerializer

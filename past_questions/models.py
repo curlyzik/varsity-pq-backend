@@ -1,23 +1,31 @@
 from django.db import models
 
+def pq_file_upload_path(instance, filename):
+    return (f"{instance.course.university}/{instance.course.department}/{instance.course.year}/{instance.course.level}/{instance.course.semester}/{instance.course.course_code}{filename}")
+
 class University(models.Model):
+    TYPE_CHOICE = (
+        ('federal', 'Federal University'),
+        ('state', 'State University'),
+        ('private', 'Private University'),
+    )
     name = models.CharField(max_length=50)
     address = models.TextField()
     website = models.URLField(max_length=200)
-    type = models.CharField(max_length=50)
+    type = models.CharField(default="federal", choices=TYPE_CHOICE, max_length=250)
     faculty = models.ManyToManyField("Faculty")
 
     def __str__(self) -> str:
         return self.name
 
 class Faculty(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self) -> str:
         return self.name
 
 class Department(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self) -> str:
@@ -47,7 +55,7 @@ class Semester(models.Model):
             ("1", "1st Semester"), 
             ("2", "2nd Semester")
         )
-    semester = models.CharField(max_length=50, choices=SEMESTER_CHOICES, default="1")
+    semester = models.CharField(max_length=50, choices=SEMESTER_CHOICES, default="1", unique=True)
 
     def __str__(self) -> str:
         if self.semester == "1":
@@ -57,17 +65,18 @@ class Semester(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=250)
     course_code = models.CharField(max_length=50, blank=True, null=True)
-    level = models.ForeignKey("Level", on_delete=models.CASCADE, blank=True, null=True)
+    university = models.ForeignKey("University", on_delete=models.CASCADE, blank=True, null=True)
     department = models.ForeignKey("Department", on_delete=models.CASCADE, blank=True, null=True)
-    semester = models.ForeignKey("Semester", on_delete=models.CASCADE, blank=True, null=True)
     year = models.ForeignKey("Year", on_delete=models.CASCADE, blank=True, null=True)
+    level = models.ForeignKey("Level", on_delete=models.CASCADE, blank=True, null=True)
+    semester = models.ForeignKey("Semester", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self) -> str:
-        return f"{self.course_code}/{self.name} - {self.level} level - {self.department} - {self.semester} - {self.year} session"
+        return f"{self.course_code}/{self.name} - {self.university} - {self.level} level - {self.department} - {self.semester} - {self.year} session"
 
-class Past_Question(models.Model):
-    file = models.FileField(upload_to=None, max_length=100)
+class PastQuestion(models.Model):
+    file = models.FileField(upload_to=pq_file_upload_path, max_length=1000)
     course = models.OneToOneField("Course", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self) -> str:
-        return f"{self.course.course_code} past question" 
+        return f"{self.course.name}/{self.course.course_code} - {self.course.university} - {self.course.department} - {self.course.year} session - {self.course.level} level - {self.course.semester} semester" 
