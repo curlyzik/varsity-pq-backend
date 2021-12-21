@@ -15,5 +15,5 @@ router.register(r'past_question', views.PastQuestionViewSets)
 
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

@@ -57,7 +57,10 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
 class PastQuestionSerializer(serializers.ModelSerializer):
-
+    course = serializers.SerializerMethodField()
     class Meta:
         model = PastQuestion
-        fields = '__all__'
+        fields = ['id', 'file', 'course']
+    
+    def get_course(self, obj):
+        return obj.course.name
