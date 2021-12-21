@@ -67,7 +67,7 @@ class Course(models.Model):
 
 class Past_Question(models.Model):
     file = models.FileField(upload_to=None, max_length=100)
-    course = models.ForeignKey("Course", on_delete=models.CASCADE, blank=True, null=True)
+    course = models.OneToOneField("Course", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self) -> str:
         return f"{self.course.course_code} past question" 
