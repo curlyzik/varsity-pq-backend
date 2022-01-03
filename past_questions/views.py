@@ -9,10 +9,10 @@ from past_questions.serializers import (CourseSerializer, DepartmentSerializer,
                                         UniversitySerializer, YearSerializer)
 
 class BaseViewSets(viewsets.ModelViewSet):
-    permission_classes_by_action = {'create': [permissions.IsAdminUser],
-                                    'delete': [permissions.IsAdminUser],
-                                    'update': [permissions.IsAdminUser],
-                                    'destroy': [permissions.IsAdminUser]}
+    permission_classes_by_action = {'create': [permissions.AllowAny], #Change later to permissions.IsAdminUser
+                                    'delete': [permissions.AllowAny],
+                                    'update': [permissions.AllowAny],
+                                    'destroy': [permissions.AllowAny]}
     
     def get_permissions(self):
         try:
