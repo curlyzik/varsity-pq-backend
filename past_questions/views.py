@@ -1,4 +1,5 @@
 from rest_framework import permissions, viewsets
+from url_filter.integrations.drf import DjangoFilterBackend
 
 from past_questions.models import (Course, Department, Faculty, Level,
                                    PastQuestion, Semester, University, Year)
@@ -8,6 +9,7 @@ from past_questions.serializers import (CourseSerializer, DepartmentSerializer,
                                         SemesterSerializer,
                                         UniversitySerializer, YearSerializer)
 
+
 class BaseViewSets(viewsets.ModelViewSet):
     permission_classes_by_action = {'create': [permissions.AllowAny], #Change later to permissions.IsAdminUser
                                     'delete': [permissions.AllowAny],
@@ -16,7 +18,7 @@ class BaseViewSets(viewsets.ModelViewSet):
     
     def get_permissions(self):
         try:
-            # return permission_classes depending on `action` 
+            # return permission_classes depending on `action` dev
             return [permission() for permission in self.permission_classes_by_action[self.action]]
         except KeyError: 
             # action is not set return default permission_classes
@@ -25,6 +27,8 @@ class BaseViewSets(viewsets.ModelViewSet):
 class UniversityViewSets(BaseViewSets):
     queryset = University.objects.all()
     serializer_class  = UniversitySerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['name', 'faculty']
   
 class FacultyViewSets(BaseViewSets):
     queryset = Faculty.objects.all()

@@ -31,30 +31,36 @@ class YearSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Year
-        fields = ['year']
+        fields = ['id', 'year']
 
 class LevelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Level
-        fields = ['level']
+        fields = ['id', 'level']
 
 class SemesterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Semester
-        fields = ['semester']
+        fields = ['id', 'semester']
 
 class CourseSerializer(serializers.ModelSerializer):
-    university = UniversitySerializer()
-    department = DepartmentSerializer()
-    year = YearSerializer()
-    level = LevelSerializer()
-    semester = Semester()
+    course_details = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ['id', 'name', 'course_code', 'course_details']
+    
+    def get_course_details(self, obj):
+        return [{
+            'university': obj.university.name,
+            'department': obj.department.name,
+            'year': obj.year.year,
+            'level': obj.level.level,
+            'semester': obj.semester.semester
+        }]
+    
     
 class PastQuestionSerializer(serializers.ModelSerializer):
     pq_details = serializers.SerializerMethodField()
