@@ -13,7 +13,7 @@ class University(models.Model):
     address = models.TextField()
     website = models.URLField(max_length=200)
     type = models.CharField(default="federal", choices=TYPE_CHOICE, max_length=250)
-    faculty = models.ManyToManyField("Faculty")
+    faculty = models.ManyToManyField("Faculty", related_name="university")
 
     def __str__(self) -> str:
         return self.name

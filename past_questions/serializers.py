@@ -8,7 +8,7 @@ class FacultySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
-        fields = ['name']
+        fields = ['id', 'name']
 
 class UniversitySerializer(serializers.ModelSerializer):
     faculty = FacultySerializer(many=True)
