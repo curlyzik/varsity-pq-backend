@@ -32,13 +32,13 @@ class FacultyViewSets(BaseViewSets):
     queryset = Faculty.objects.all()
     serializer_class  = FacultySerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['name', 'university']
+    filter_fields = ['university']
 
 class DepartmentViewSets(BaseViewSets):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['name', 'faculty']
+    filter_fields = ['faculty']
 
 class YearViewSets(BaseViewSets):
     queryset = Year.objects.all()
@@ -55,6 +55,8 @@ class SemesterViewSets(BaseViewSets):
 class CourseViewSets(BaseViewSets):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['department']
 
 class PastQuestionViewSets(BaseViewSets):
     queryset = PastQuestion.objects.all()
