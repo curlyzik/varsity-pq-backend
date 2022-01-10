@@ -66,6 +66,7 @@ class Course(models.Model):
     name = models.CharField(max_length=250)
     course_code = models.CharField(max_length=50, blank=True, null=True)
     university = models.ForeignKey("University", on_delete=models.CASCADE, blank=True, null=True)
+    faculty = models.ForeignKey("Faculty", on_delete=models.CASCADE, blank=True, null=True)
     department = models.ForeignKey("Department", on_delete=models.CASCADE, blank=True, null=True)
     year = models.ForeignKey("Year", on_delete=models.CASCADE, blank=True, null=True)
     level = models.ForeignKey("Level", on_delete=models.CASCADE, blank=True, null=True)

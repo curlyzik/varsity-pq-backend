@@ -56,7 +56,7 @@ class CourseViewSets(BaseViewSets):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['department']
+    filter_fields = ['university', 'faculty', 'department', 'level', 'year', 'semester']
 
 class PastQuestionViewSets(BaseViewSets):
     queryset = PastQuestion.objects.all()
