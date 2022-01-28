@@ -11,11 +11,11 @@ class FacultySerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class UniversitySerializer(serializers.ModelSerializer):
-    faculty = FacultySerializer(many=True)
+    faculty = FacultySerializer(many=True, read_only=True)
 
     class Meta:
         model = University
-        fields = ['id' ,'name', 'address', 'website', 'type', 'faculty']
+        fields = ['id' ,'name', 'address', 'type', 'faculty']
     
     def get_faculty(self, obj):
         return obj.faculty.name
