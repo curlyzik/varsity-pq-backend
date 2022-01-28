@@ -3,7 +3,7 @@ import django_heroku
 
 ALLOWED_HOSTS = ['127.0.0.1', 'https://varsity-pq.herokuapp.com']
 
-DEBUG = False
+DEBUG = True
 
 # Amazon S3 Configurations
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
