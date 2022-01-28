@@ -1,0 +1,29 @@
+-r requirements.txt
+-r requirements-release.txt
+alchemy-mock
+black; python_version > "3.6"
+coreapi
+coverage
+django-debug-toolbar
+django-debug-toolbar-alchemy
+django-extensions
+djangorestframework
+flake8
+flake8-bugbear; python_version > "3.6"
+flake8-comprehensions
+importanize
+mock
+pdbpp
+pre-commit
+pre-commit-hooks
+ptpython
+pytest
+pytest-cov
+pytest-django
+sphinx
+sphinx-autobuild
+sphinx-rtd-theme
+sqlalchemy
+tox
+watchdog
+werkzeug

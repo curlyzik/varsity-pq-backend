@@ -1,0 +1,24 @@
+{
+    "exclude": [
+        "*/.tox/*"
+    ],
+    "length": 96,
+    "groups": [
+        {
+            "type": "stdlib"
+        },
+        {
+            "type": "remainder"
+        },
+        {
+            "type": "packages",
+            "packages": [
+                "url_filter",
+                "test_project"
+            ]
+        },
+        {
+            "type": "local"
+        }
+    ]
+}

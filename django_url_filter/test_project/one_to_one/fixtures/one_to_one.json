@@ -1,0 +1,58 @@
+[
+  {
+    "fields": {
+      "address": "944 W. Fullerton",
+      "name": "Demon Dogs"
+    },
+    "model": "one_to_one.place",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "address": "1013 N. Ashland",
+      "name": "Ace Hardware"
+    },
+    "model": "one_to_one.place",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "serves_hot_dogs": true,
+      "serves_pizza": false
+    },
+    "model": "one_to_one.restaurant",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "serves_hot_dogs": true,
+      "serves_pizza": false
+    },
+    "model": "one_to_one.restaurant",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "name": "Joe",
+      "restaurant": 1
+    },
+    "model": "one_to_one.waiter",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "Jonny",
+      "restaurant": 1
+    },
+    "model": "one_to_one.waiter",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "name": "Steve",
+      "restaurant": 2
+    },
+    "model": "one_to_one.waiter",
+    "pk": 3
+  }
+]
