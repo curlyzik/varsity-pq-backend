@@ -1,5 +1,7 @@
 from rest_framework import permissions, viewsets
-from url_filter.integrations.drf import DjangoFilterBackend
+# from url_filter.integrations.drf import DjangoFilterBackend
+
+from django_url_filter.url_filter.integrations.drf import DjangoFilterBackend
 
 from past_questions.models import (Course, Department, Faculty, Level,
                                    PastQuestion, Semester, University, Year)
