@@ -3,7 +3,7 @@ import django_heroku
 
 ALLOWED_HOSTS = ['127.0.0.1', 'https://varsity-pq.herokuapp.com']
 
-DEBUG = True
+DEBUG = False
 
 # Amazon S3 Configurations
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -16,4 +16,4 @@ AWS_QUERYSTRING_AUTH = False
 django_heroku.settings(locals())
 
 # Static file configuration
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
