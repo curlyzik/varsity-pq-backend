@@ -1,6 +1,8 @@
 from .base import *
 import django_heroku
 
+ALLOWED_HOSTS = ['127.0.0.1', 'https://varsity-pq.herokuapp.com/']
+
 DEBUG = False
 
 # Amazon S3 Configurations
