@@ -15,7 +15,7 @@ class UniversitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = University
-        fields = ['id' ,'name', 'address', 'type', 'faculty']
+        fields = ['id' ,'name', 'address', 'type', 'faculty', 'website']
     
     def get_faculty(self, obj):
         return obj.faculty.name
