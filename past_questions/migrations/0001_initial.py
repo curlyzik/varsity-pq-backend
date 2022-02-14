@@ -8,69 +8,168 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=250)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=250)),
             ],
         ),
         migrations.CreateModel(
-            name='Department',
+            name="Department",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='Faculty',
+            name="Faculty",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('department', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='past_questions.department')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                (
+                    "department",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="past_questions.department",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Year',
+            name="Year",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('year', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("year", models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='University',
+            name="University",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('address', models.TextField()),
-                ('website', models.URLField()),
-                ('type', models.CharField(max_length=50)),
-                ('faculty', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='past_questions.faculty')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("address", models.TextField()),
+                ("website", models.URLField()),
+                ("type", models.CharField(max_length=50)),
+                (
+                    "faculty",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="past_questions.faculty",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Semester',
+            name="Semester",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('semester', models.CharField(choices=[('1', '1st Semester'), ('2', '2nd Semester')], default='1', max_length=50)),
-                ('courses', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='past_questions.course')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "semester",
+                    models.CharField(
+                        choices=[("1", "1st Semester"), ("2", "2nd Semester")],
+                        default="1",
+                        max_length=50,
+                    ),
+                ),
+                (
+                    "courses",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="past_questions.course",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Level',
+            name="Level",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('level', models.PositiveIntegerField(choices=[(100, '100'), (200, '200'), (300, '300'), (400, '400'), (500, '500')])),
-                ('semester', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='past_questions.semester')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "level",
+                    models.PositiveIntegerField(
+                        choices=[
+                            (100, "100"),
+                            (200, "200"),
+                            (300, "300"),
+                            (400, "400"),
+                            (500, "500"),
+                        ]
+                    ),
+                ),
+                (
+                    "semester",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="past_questions.semester",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='department',
-            name='level',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='past_questions.level'),
+            model_name="department",
+            name="level",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="past_questions.level"
+            ),
         ),
     ]

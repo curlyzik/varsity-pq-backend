@@ -7,17 +7,22 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0009_year_level'),
+        ("past_questions", "0009_year_level"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='year',
-            name='level',
+            model_name="year",
+            name="level",
         ),
         migrations.AddField(
-            model_name='level',
-            name='year',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.year'),
+            model_name="level",
+            name="year",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.year",
+            ),
         ),
     ]

@@ -7,13 +7,13 @@ import past_questions.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0017_alter_past_question_course'),
+        ("past_questions", "0017_alter_past_question_course"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='past_question',
-            name='file',
+            model_name="past_question",
+            name="file",
             field=models.FileField(upload_to=past_questions.models.pq_file_upload_path),
         ),
     ]

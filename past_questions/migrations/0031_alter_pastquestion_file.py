@@ -7,13 +7,15 @@ import past_questions.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0030_rename_past_question_pastquestion'),
+        ("past_questions", "0030_rename_past_question_pastquestion"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='pastquestion',
-            name='file',
-            field=models.FileField(max_length=1000, upload_to=past_questions.models.pq_file_upload_path),
+            model_name="pastquestion",
+            name="file",
+            field=models.FileField(
+                max_length=1000, upload_to=past_questions.models.pq_file_upload_path
+            ),
         ),
     ]

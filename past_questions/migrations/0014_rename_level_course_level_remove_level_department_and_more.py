@@ -7,40 +7,55 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0013_remove_level_course_course_level'),
+        ("past_questions", "0013_remove_level_course_course_level"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='course',
-            old_name='Level',
-            new_name='level',
+            model_name="course",
+            old_name="Level",
+            new_name="level",
         ),
         migrations.RemoveField(
-            model_name='level',
-            name='department',
+            model_name="level",
+            name="department",
         ),
         migrations.RemoveField(
-            model_name='level',
-            name='semester',
+            model_name="level",
+            name="semester",
         ),
         migrations.RemoveField(
-            model_name='level',
-            name='year',
+            model_name="level",
+            name="year",
         ),
         migrations.AddField(
-            model_name='course',
-            name='department',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.department'),
+            model_name="course",
+            name="department",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.department",
+            ),
         ),
         migrations.AddField(
-            model_name='course',
-            name='semester',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.semester'),
+            model_name="course",
+            name="semester",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.semester",
+            ),
         ),
         migrations.AddField(
-            model_name='course',
-            name='year',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.year'),
+            model_name="course",
+            name="year",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.year",
+            ),
         ),
     ]

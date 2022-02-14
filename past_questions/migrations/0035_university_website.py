@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0034_remove_university_website_alter_university_faculty'),
+        ("past_questions", "0034_remove_university_website_alter_university_faculty"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='university',
-            name='website',
+            model_name="university",
+            name="website",
             field=models.URLField(blank=True, null=True),
         ),
     ]

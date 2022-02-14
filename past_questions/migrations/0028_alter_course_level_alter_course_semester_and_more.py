@@ -7,23 +7,38 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0027_alter_course_department_alter_course_faculty'),
+        ("past_questions", "0027_alter_course_department_alter_course_faculty"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='course',
-            name='level',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.level'),
+            model_name="course",
+            name="level",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.level",
+            ),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='semester',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.semester'),
+            model_name="course",
+            name="semester",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.semester",
+            ),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='year',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.year'),
+            model_name="course",
+            name="year",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.year",
+            ),
         ),
     ]

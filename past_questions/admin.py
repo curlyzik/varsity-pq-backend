@@ -1,7 +1,15 @@
 from django.contrib import admin
 
-from past_questions.models import (Course, Department, Faculty, Level,
-                                   PastQuestion, Semester, University, Year)
+from past_questions.models import (
+    Course,
+    Department,
+    Faculty,
+    Level,
+    PastQuestion,
+    Semester,
+    University,
+    Year,
+)
 
 admin.site.register(University)
 admin.site.register(Faculty)

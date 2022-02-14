@@ -7,28 +7,48 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0002_remove_university_faculty_university_faculty'),
+        ("past_questions", "0002_remove_university_faculty_university_faculty"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='department',
-            name='level',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.level'),
+            model_name="department",
+            name="level",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.level",
+            ),
         ),
         migrations.AlterField(
-            model_name='faculty',
-            name='department',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.department'),
+            model_name="faculty",
+            name="department",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.department",
+            ),
         ),
         migrations.AlterField(
-            model_name='level',
-            name='semester',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.semester'),
+            model_name="level",
+            name="semester",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.semester",
+            ),
         ),
         migrations.AlterField(
-            model_name='semester',
-            name='courses',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.course'),
+            model_name="semester",
+            name="courses",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.course",
+            ),
         ),
     ]

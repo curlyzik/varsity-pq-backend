@@ -6,17 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0003_alter_department_level_alter_faculty_department_and_more'),
+        (
+            "past_questions",
+            "0003_alter_department_level_alter_faculty_department_and_more",
+        ),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='faculty',
-            name='department',
+            model_name="faculty",
+            name="department",
         ),
         migrations.AddField(
-            model_name='faculty',
-            name='department',
-            field=models.ManyToManyField(to='past_questions.Department'),
+            model_name="faculty",
+            name="department",
+            field=models.ManyToManyField(to="past_questions.Department"),
         ),
     ]

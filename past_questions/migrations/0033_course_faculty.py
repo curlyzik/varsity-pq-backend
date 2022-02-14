@@ -7,13 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('past_questions', '0032_alter_university_faculty'),
+        ("past_questions", "0032_alter_university_faculty"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='course',
-            name='faculty',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='past_questions.faculty'),
+            model_name="course",
+            name="faculty",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="past_questions.faculty",
+            ),
         ),
     ]
