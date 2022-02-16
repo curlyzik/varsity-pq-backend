@@ -13,6 +13,7 @@ class CustomUser(AbstractUser):
     department = models.CharField(max_length=50, blank=True, null=True)
     year = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(_("email address"), unique=True)
+    is_volunteer = models.BooleanField(default=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

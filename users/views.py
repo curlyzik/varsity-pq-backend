@@ -2,9 +2,9 @@ import random
 import string
 
 from django.contrib.auth import get_user_model
-from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
 
 from users.serializers import UserSerializer
 
@@ -22,7 +22,7 @@ class VolunteerRequest(APIView):
 
         if User.objects.filter(email=email).exists():
             return Response(
-                {"detail": "User with this email already exists"},
+                data={"detail": "User with this email already exists"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
