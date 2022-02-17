@@ -27,8 +27,10 @@ from past_questions.serializers import (
 
 
 class BaseViewSets(viewsets.ModelViewSet):
+    # Solution from - https://stackoverflow.com/questions/35970970/django-rest-framework-permission-classes-of-viewset-method
     permission_classes_by_action = {
         "create": [permissions.AllowAny],  # Change later to permissions.IsAdminUser
+        "list": [permissions.AllowAny],  # Change later to permissions.IsAdminUser
         "delete": [permissions.AllowAny],
         "update": [permissions.AllowAny],
         "destroy": [permissions.AllowAny],

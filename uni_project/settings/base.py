@@ -24,12 +24,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.sites',
+
+    # Local apps
     "users.apps.UsersConfig",
     "past_questions.apps.PastQuestionsConfig",
+
+    # Thired party apps
     "rest_framework",
     "rest_framework.authtoken",
     "dj_rest_auth",
     "corsheaders",
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+
 ]
 
 MIDDLEWARE = [
@@ -131,3 +142,14 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
 }
+
+
+# REST_AUTH_SERIALIZERS = {
+#     'LOGIN_SERIALIZER': 'users.serializers.CustomLoginSerializer',
+# }
+
+SITE_ID = 1
+
+# Allauth settings
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED=True
