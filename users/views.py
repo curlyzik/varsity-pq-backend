@@ -10,6 +10,7 @@ from users.serializers import UserSerializer
 
 User = get_user_model()
 
+
 class VolunteerRequest(APIView):
     def post(self, request):
         full_name = request.data.get("full_name")

@@ -57,7 +57,6 @@ class FacultyViewSets(BaseViewSets):
     queryset = Faculty.objects.all()
     serializer_class = FacultySerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ["university"]
 
 
 class DepartmentViewSets(BaseViewSets):
