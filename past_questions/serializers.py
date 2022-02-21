@@ -66,6 +66,7 @@ class CourseSerializer(serializers.ModelSerializer):
         return [
             {
                 "university": obj.university.name,
+                "faculty": obj.faculty.name,
                 "department": obj.department.name,
                 "year": obj.year.year,
                 "level": obj.level.level,

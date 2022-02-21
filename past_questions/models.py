@@ -99,4 +99,4 @@ class PastQuestion(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"{self.course.name}/{self.course.course_code} - {self.course.university} - {self.course.department} - {self.course.year} session - {self.course.level} level - {self.course.semester} semester"
+        return f"{self.course.name}/{self.course.course_code} - {self.course.university} - {self.course.faculty} - {self.course.department} - {self.course.year} session - {self.course.level} level - {self.course.semester} semester"
