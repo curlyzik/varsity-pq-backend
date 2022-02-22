@@ -38,7 +38,7 @@ class Department(models.Model):
 
 
 class Year(models.Model):
-    year = models.CharField(max_length=50)
+    year = models.CharField(max_length=50, unique=True)
 
     def __str__(self) -> str:
         return self.year
@@ -52,7 +52,7 @@ class Level(models.Model):
         (400, "400"),
         (500, "500"),
     )
-    level = models.PositiveIntegerField(choices=LEVEL_CHOICES)
+    level = models.PositiveIntegerField(choices=LEVEL_CHOICES, unique=True)
 
     def __str__(self) -> str:
         return f"{self.level}"
