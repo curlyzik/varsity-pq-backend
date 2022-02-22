@@ -1,4 +1,6 @@
-from rest_framework import permissions, viewsets
+from django.http import Http404
+from rest_framework import permissions, viewsets, views, status
+from rest_framework.response import Response
 
 # from url_filter.integrations.drf import DjangoFilterBackend
 
@@ -64,6 +66,43 @@ class DepartmentViewSets(BaseViewSets):
     serializer_class = DepartmentSerializer
     filter_backends = [DjangoFilterBackend]
     filter_fields = ["faculty"]
+
+
+# This is the department view to create and save
+# new department with its selected faculty
+class DepartmentCreateApiView(views.APIView):
+    def post(self, request):
+        try:
+            faculty = Faculty.objects.get(name=request.data.get("faculty"))
+        except Faculty.DoesNotExist:
+            raise Http404
+
+        department = Department.objects.create(
+            name=request.data.get("department_name"), faculty=faculty
+        )
+        serializer = DepartmentSerializer(department)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+# This is the department view to update and save
+# department with its initial or new faculty
+class DepartmentUpdateApiView(views.APIView):
+    def get_object(self, pk):
+        try:
+            return Department.objects.get(pk=pk)
+        except Department.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk):
+        department = self.get_object(pk)
+        department.name = request.data.get("name")
+        try:
+            department.faculty = Faculty.objects.get(name=request.data.get("faculty"))
+        except Faculty.DoesNotExist:
+            raise Http404
+
+        serializer = DepartmentSerializer(department)
+        return Response(serializer.data)
 
 
 class YearViewSets(BaseViewSets):

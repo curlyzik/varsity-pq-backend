@@ -16,4 +16,6 @@ router.register(r"past_question", views.PastQuestionViewSets)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("department-create/", views.DepartmentCreateApiView.as_view()),
+    path("department-update/<int:pk>/", views.DepartmentUpdateApiView.as_view()),
 ]

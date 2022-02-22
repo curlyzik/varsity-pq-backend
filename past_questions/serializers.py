@@ -30,7 +30,7 @@ class UniversitySerializer(serializers.ModelSerializer):
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    faculty = FacultySerializer()
+    faculty = FacultySerializer(read_only=True)
 
     class Meta:
         model = Department
