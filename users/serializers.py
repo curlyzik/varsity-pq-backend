@@ -18,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
             "is_volunteer",
         ]
 
+
 class CustomUserDetailsSerializer(UserDetailsSerializer):
     class Meta(UserDetailsSerializer.Meta):
         model = User

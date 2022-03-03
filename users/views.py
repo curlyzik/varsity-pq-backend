@@ -35,7 +35,10 @@ class VolunteerRequest(APIView):
             email=email,
         )
         password = "".join(
-            random.choice(string.ascii_uppercase + string.digits) for _ in range(15)
+            random.choice(
+                string.ascii_uppercase + string.digits + string.ascii_lowercase
+            )
+            for _ in range(8)
         )
         volunteer.set_password(password)
         volunteer.save()

@@ -127,6 +127,76 @@ class CourseViewSets(BaseViewSets):
     filter_fields = ["university", "faculty", "department", "level", "year", "semester"]
 
 
+class CreateCourseApiView(views.APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        try:
+            university = University.objects.get(name=request.data.get("university"))
+            print(request.user)
+        except University.DoesNotExist:
+            raise Http404
+
+        try:
+            faculty = Faculty.objects.get(name=request.data.get("faculty"))
+        except Faculty.DoesNotExist:
+            raise Http404
+
+        try:
+            department = Department.objects.get(name=request.data.get("department"))
+        except Department.DoesNotExist:
+            raise Http404
+
+        try:
+            level = Level.objects.get(level=request.data.get("level"))
+        except Level.DoesNotExist:
+            raise Http404
+
+        try:
+            year = Year.objects.get(year=request.data.get("year"))
+        except Year.DoesNotExist:
+            year = Year.objects.get_or_create(year=request.data.get("year"))[0]
+            print(year)
+
+        try:
+            semester = Semester.objects.get(semester=request.data.get("semester"))
+        except Semester.DoesNotExist:
+            raise Http404
+
+        check_if_course_already_exists = Course.objects.filter(
+            name=request.data.get("name"),
+            course_code=request.data.get("course_code"),
+            university=university,
+            faculty=faculty,
+            department=department,
+            level=level,
+            year=year,
+            semester=semester,
+        ).exists()
+
+        if check_if_course_already_exists:
+            return Response(
+                {"message": "Course already exists"}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        course = Course.objects.create(
+            name=request.data.get("name"),
+            course_code=request.data.get("course_code"),
+            university=university,
+            faculty=faculty,
+            department=department,
+            level=level,
+            year=year,
+            semester=semester,
+            author=request.user,
+        )
+        serializer = CourseSerializer(course)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
 class PastQuestionViewSets(BaseViewSets):
     queryset = PastQuestion.objects.all()
     serializer_class = PastQuestionSerializer
+
+
+# class CreatePastQuestionApiView(views.APIView):

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+
 from .models import (
     Course,
     Department,
@@ -60,7 +61,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["id", "name", "course_code", "course_details"]
+        fields = ["id", "name", "course_code", "author", "course_details"]
 
     def get_course_details(self, obj):
         return [
@@ -80,7 +81,7 @@ class PastQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PastQuestion
-        fields = ["id", "file", "pq_details"]
+        fields = ["id", "file", "author", "pq_details"]
 
     def get_pq_details(self, obj):
         return [

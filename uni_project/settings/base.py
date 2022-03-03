@@ -130,6 +130,7 @@ JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.3000",
+    "http://192.168.72.42:3000",
     "https://varsity-pq.herokuapp.com",
     "https://varsity-pq-frontend.vercel.app",
 ]
@@ -148,5 +149,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 # Custom user details
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'users.serializers.CustomUserDetailsSerializer',
+    "USER_DETAILS_SERIALIZER": "users.serializers.CustomUserDetailsSerializer",
 }
