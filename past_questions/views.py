@@ -133,9 +133,11 @@ class CourseApiView(views.APIView):
     """
     permission_classes = [permissions.IsAuthenticated]
 
+    # get all courses created by the authenticated user
     def get(self, request):
         courses = Course.objects.filter(author=request.user)
         serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data)
 
     def post(self, request):
         try:
