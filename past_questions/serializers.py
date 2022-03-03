@@ -12,6 +12,7 @@ from .models import (
     Year,
 )
 
+from users.serializers import CustomUserDetailsSerializer
 
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
@@ -58,7 +59,7 @@ class SemesterSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     course_details = serializers.SerializerMethodField()
-
+    author = CustomUserDetailsSerializer()
     class Meta:
         model = Course
         fields = ["id", "name", "course_code", "author", "course_details"]

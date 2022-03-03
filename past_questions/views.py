@@ -127,39 +127,51 @@ class CourseViewSets(BaseViewSets):
     filter_fields = ["university", "faculty", "department", "level", "year", "semester"]
 
 
-class CreateCourseApiView(views.APIView):
+class CourseApiView(views.APIView):
+    """
+    List all Courses, or create a new course.
+    """
     permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        courses = Course.objects.filter(author=request.user)
+        serializer = CourseSerializer(courses, many=True)
 
     def post(self, request):
         try:
             university = University.objects.get(name=request.data.get("university"))
-            print(request.user)
+            print(university)
         except University.DoesNotExist:
             raise Http404
 
         try:
             faculty = Faculty.objects.get(name=request.data.get("faculty"))
+            print(faculty)
         except Faculty.DoesNotExist:
             raise Http404
 
         try:
             department = Department.objects.get(name=request.data.get("department"))
+            print(department)
         except Department.DoesNotExist:
             raise Http404
 
         try:
             level = Level.objects.get(level=request.data.get("level"))
+            print(level)
         except Level.DoesNotExist:
             raise Http404
 
         try:
             year = Year.objects.get(year=request.data.get("year"))
+            print(year)
         except Year.DoesNotExist:
             year = Year.objects.get_or_create(year=request.data.get("year"))[0]
             print(year)
 
         try:
             semester = Semester.objects.get(semester=request.data.get("semester"))
+            print(semester)
         except Semester.DoesNotExist:
             raise Http404
 

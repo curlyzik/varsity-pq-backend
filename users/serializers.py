@@ -23,6 +23,7 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
     class Meta(UserDetailsSerializer.Meta):
         model = User
         fields = [
+            "id",
             "full_name",
             "university",
             "faculty",
