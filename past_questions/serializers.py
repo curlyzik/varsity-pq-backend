@@ -14,6 +14,7 @@ from .models import (
 
 from users.serializers import CustomUserDetailsSerializer
 
+
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty
@@ -60,6 +61,7 @@ class SemesterSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     course_details = serializers.SerializerMethodField()
     author = CustomUserDetailsSerializer()
+
     class Meta:
         model = Course
         fields = ["id", "name", "course_code", "author", "course_details"]

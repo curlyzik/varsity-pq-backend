@@ -28,6 +28,48 @@ from past_questions.serializers import (
 )
 
 
+class GetModelObjects:
+    def get_model(self, request):
+        try:
+            university = University.objects.get(name=request.data.get("university"))
+        except University.DoesNotExist:
+            raise Http404
+
+        try:
+            faculty = Faculty.objects.get(name=request.data.get("faculty"))
+        except Faculty.DoesNotExist:
+            raise Http404
+
+        try:
+            department = Department.objects.get(name=request.data.get("department"))
+        except Department.DoesNotExist:
+            raise Http404
+
+        try:
+            level = Level.objects.get(level=request.data.get("level"))
+        except Level.DoesNotExist:
+            raise Http404
+
+        try:
+            year = Year.objects.get(year=request.data.get("year"))
+        except Year.DoesNotExist:
+            year = Year.objects.get_or_create(year=request.data.get("year"))[0]
+
+        try:
+            semester = Semester.objects.get(semester=request.data.get("semester"))
+        except Semester.DoesNotExist:
+            raise Http404
+
+        return {
+            "university": university,
+            "faculty": faculty,
+            "department": department,
+            "level": level,
+            "year": year,
+            "semester": semester,
+        }
+
+
 class BaseViewSets(viewsets.ModelViewSet):
     # Solution from - https://stackoverflow.com/questions/35970970/django-rest-framework-permission-classes-of-viewset-method
     permission_classes_by_action = {
@@ -127,10 +169,11 @@ class CourseViewSets(BaseViewSets):
     filter_fields = ["university", "faculty", "department", "level", "year", "semester"]
 
 
-class CourseApiView(views.APIView):
+class CourseApiView(views.APIView, GetModelObjects):
     """
     List all Courses, or create a new course.
     """
+
     permission_classes = [permissions.IsAuthenticated]
 
     # get all courses created by the authenticated user
@@ -140,52 +183,16 @@ class CourseApiView(views.APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        try:
-            university = University.objects.get(name=request.data.get("university"))
-            print(university)
-        except University.DoesNotExist:
-            raise Http404
-
-        try:
-            faculty = Faculty.objects.get(name=request.data.get("faculty"))
-            print(faculty)
-        except Faculty.DoesNotExist:
-            raise Http404
-
-        try:
-            department = Department.objects.get(name=request.data.get("department"))
-            print(department)
-        except Department.DoesNotExist:
-            raise Http404
-
-        try:
-            level = Level.objects.get(level=request.data.get("level"))
-            print(level)
-        except Level.DoesNotExist:
-            raise Http404
-
-        try:
-            year = Year.objects.get(year=request.data.get("year"))
-            print(year)
-        except Year.DoesNotExist:
-            year = Year.objects.get_or_create(year=request.data.get("year"))[0]
-            print(year)
-
-        try:
-            semester = Semester.objects.get(semester=request.data.get("semester"))
-            print(semester)
-        except Semester.DoesNotExist:
-            raise Http404
 
         check_if_course_already_exists = Course.objects.filter(
             name=request.data.get("name"),
             course_code=request.data.get("course_code"),
-            university=university,
-            faculty=faculty,
-            department=department,
-            level=level,
-            year=year,
-            semester=semester,
+            university=self.get_model(request)["university"],
+            faculty=self.get_model(request)["faculty"],
+            department=self.get_model(request)["department"],
+            level=self.get_model(request)["level"],
+            year=self.get_model(request)["year"],
+            semester=self.get_model(request)["semester"],
         ).exists()
 
         if check_if_course_already_exists:
@@ -196,16 +203,48 @@ class CourseApiView(views.APIView):
         course = Course.objects.create(
             name=request.data.get("name"),
             course_code=request.data.get("course_code"),
-            university=university,
-            faculty=faculty,
-            department=department,
-            level=level,
-            year=year,
-            semester=semester,
+            university=self.get_model(request)["university"],
+            faculty=self.get_model(request)["faculty"],
+            department=self.get_model(request)["department"],
+            level=self.get_model(request)["level"],
+            year=self.get_model(request)["year"],
+            semester=self.get_model(request)["semester"],
             author=request.user,
         )
         serializer = CourseSerializer(course)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class CourseDetailApiView(views.APIView, GetModelObjects):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Course.objects.get(pk=pk)
+        except Course.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk):
+        course = self.get_object(pk)
+        course.name = request.data.get("name")
+        course.course_code = request.data.get("course_code")
+
+        university = self.get_model(request)["university"]
+        course.university = university
+
+        faculty = self.get_model(request)["faculty"]
+        course.faculty = faculty
+        
+        course.department = self.get_model(request)["department"]
+        course.level = self.get_model(request)["level"]
+        course.year = self.get_model(request)["year"]
+        course.semester = self.get_model(request)["semester"]
+        course.author = request.user
+
+        course.save()
+
+        serializer = CourseSerializer(course)
+        return Response(serializer.data)
 
 
 class PastQuestionViewSets(BaseViewSets):
