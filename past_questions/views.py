@@ -184,21 +184,25 @@ class CourseApiView(views.APIView, GetModelObjects):
 
     def post(self, request):
 
-        check_if_course_already_exists = Course.objects.filter(
-            name=request.data.get("name"),
-            course_code=request.data.get("course_code"),
-            university=self.get_model(request)["university"],
-            faculty=self.get_model(request)["faculty"],
-            department=self.get_model(request)["department"],
-            level=self.get_model(request)["level"],
-            year=self.get_model(request)["year"],
-            semester=self.get_model(request)["semester"],
-        ).exists()
+        """
+        I took down this logic so as to allow
+        different users to create the same course
+        """
+        # check_if_course_already_exists = Course.objects.filter(
+        #     name=request.data.get("name"),
+        #     course_code=request.data.get("course_code"),
+        #     university=self.get_model(request)["university"],
+        #     faculty=self.get_model(request)["faculty"],
+        #     department=self.get_model(request)["department"],
+        #     level=self.get_model(request)["level"],
+        #     year=self.get_model(request)["year"],
+        #     semester=self.get_model(request)["semester"],
+        # ).exists()
 
-        if check_if_course_already_exists:
-            return Response(
-                {"message": "Course already exists"}, status=status.HTTP_400_BAD_REQUEST
-            )
+        # if check_if_course_already_exists:
+        #     return Response(
+        #         {"message": "Course already exists"}, status=status.HTTP_400_BAD_REQUEST
+        #     )
 
         course = Course.objects.create(
             name=request.data.get("name"),
