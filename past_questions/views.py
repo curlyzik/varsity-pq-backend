@@ -224,6 +224,11 @@ class CourseDetailApiView(views.APIView, GetModelObjects):
         except Course.DoesNotExist:
             raise Http404
 
+    def get(self, request, pk):
+        course = self.get_object(pk)
+        serializer = CourseSerializer(course)
+        return Response(serializer.data)
+
     def put(self, request, pk):
         course = self.get_object(pk)
         course.name = request.data.get("name")
@@ -234,17 +239,18 @@ class CourseDetailApiView(views.APIView, GetModelObjects):
 
         faculty = self.get_model(request)["faculty"]
         course.faculty = faculty
-        
+
         course.department = self.get_model(request)["department"]
         course.level = self.get_model(request)["level"]
         course.year = self.get_model(request)["year"]
         course.semester = self.get_model(request)["semester"]
-        course.author = request.user
 
-        course.save()
-
-        serializer = CourseSerializer(course)
-        return Response(serializer.data)
+        # save the course if the logged in user created the course
+        if request.user == course.author:
+            course.save()
+            serializer = CourseSerializer(course)
+            return Response(serializer.data)
+        return Response(data={"message": "unauthorized to edit course"},status=status.HTTP_401_UNAUTHORIZED)
 
 
 class PastQuestionViewSets(BaseViewSets):
