@@ -92,6 +92,8 @@ class Course(models.Model):
         "Semester", on_delete=models.CASCADE, blank=True, null=True
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return f"{self.course_code}/{self.name} - {self.university} - {self.level} level - {self.department} - {self.semester} - {self.year} session"
@@ -103,6 +105,8 @@ class PastQuestion(models.Model):
         "Course", on_delete=models.CASCADE, blank=True, null=True
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return f"{self.course.name}/{self.course.course_code} - {self.course.university} - {self.course.faculty} - {self.course.department} - {self.course.year} session - {self.course.level} level - {self.course.semester} semester"
