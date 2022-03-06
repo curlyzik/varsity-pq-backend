@@ -178,7 +178,7 @@ class CourseApiView(views.APIView, GetModelObjects):
 
     # get all courses created by the authenticated user
     def get(self, request):
-        courses = Course.objects.filter(author=request.user)
+        courses = Course.objects.filter(author=request.user).order_by("-updated_at")
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
 

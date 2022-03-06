@@ -64,7 +64,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["id", "name", "course_code", "author", "course_details"]
+        fields = ["id", "name", "course_code", "author", "course_details", "created_at", "updated_at"]
 
     def get_course_details(self, obj):
         return [
@@ -84,7 +84,7 @@ class PastQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PastQuestion
-        fields = ["id", "file", "author", "pq_details"]
+        fields = ["id", "file", "author", "pq_details", "created_at", "updated_at"]
 
     def get_pq_details(self, obj):
         return [
