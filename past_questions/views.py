@@ -255,7 +255,10 @@ class CourseDetailApiView(views.APIView, GetModelObjects):
             course.save()
             serializer = CourseSerializer(course)
             return Response(serializer.data)
-        return Response(data={"message": "unauthorized to edit course"},status=status.HTTP_401_UNAUTHORIZED)
+        return Response(
+            data={"message": "unauthorized to edit course"},
+            status=status.HTTP_401_UNAUTHORIZED,
+        )
 
 
 class PastQuestionViewSets(BaseViewSets):

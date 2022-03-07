@@ -64,7 +64,15 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["id", "name", "course_code", "author", "course_details", "created_at", "updated_at"]
+        fields = [
+            "id",
+            "name",
+            "course_code",
+            "author",
+            "course_details",
+            "created_at",
+            "updated_at",
+        ]
 
     def get_course_details(self, obj):
         return [
