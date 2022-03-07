@@ -127,6 +127,8 @@ REST_USE_JWT = True
 JWT_AUTH_COOKIE = "my-app-auth"
 JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 
+OLD_PASSWORD_FIELD_ENABLED = True
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.3000",
