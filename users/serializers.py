@@ -44,7 +44,7 @@ class CustomPasswordResetSerializer(PasswordResetSerializer):
 
     def get_email_options(self):
         return {
-            "domain_override": settings.ALLOWED_HOSTS[2],
+            "domain_override": settings.ALLOWED_HOSTS[1],
             # "extra_email_context":{
             #     "domain": "domain nigga"
             # },
