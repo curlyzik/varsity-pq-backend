@@ -138,7 +138,7 @@ OLD_PASSWORD_FIELD_ENABLED = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.3000",
-    "http://192.168.72.42:3000",
+    "http://192.168.46.42:3000",
     "https://varsity-pq.herokuapp.com",
     "https://varsity-pq-frontend.vercel.app",
 ]
