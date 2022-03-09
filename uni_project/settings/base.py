@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     # Local apps
     "users.apps.UsersConfig",
     "past_questions.apps.PastQuestionsConfig",
-    # Thired party apps
+    # Third party apps
+"anymail",
     "rest_framework",
     "rest_framework.authtoken",
     "dj_rest_auth",
@@ -148,7 +149,7 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 SITE_ID = 1
 
@@ -156,9 +157,13 @@ SITE_ID = 1
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
+
+ANYMAIL = {
+    "SENDGRID_API_KEY": env("EMAIL_HOST_PASSWORD")
+}
 # EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'email@gmail.com'
-# EMAIL_HOST_PASSWORD = ********
+# EMAIL_HOST = env("EMAIL_HOST")
+# EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 # EMAIL_PORT = 587
