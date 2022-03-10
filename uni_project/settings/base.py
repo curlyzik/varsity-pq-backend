@@ -156,17 +156,18 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 
 
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST_USER = "apikey" # this is exactly the value 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-# EMAIL_PORT = 456
-# EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "curlyzik@gmail.com"
+EMAIL_HOST_PASSWORD = "apvzfekaahuzknea"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
-ANYMAIL = {
-    "SENDGRID_API_KEY": SENDGRID_API_KEY
-}
+# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
+# ANYMAIL = {
+#     "SENDGRID_API_KEY": SENDGRID_API_KEY
+# }
 
 # SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
