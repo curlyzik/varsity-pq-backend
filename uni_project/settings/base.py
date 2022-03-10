@@ -2,6 +2,7 @@ import os
 import environ
 from datetime import timedelta
 from pathlib import Path
+from mailjet_rest import Client
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -29,7 +30,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
-"anymail",
+    "anymail",
     "rest_framework",
     "rest_framework.authtoken",
     "dj_rest_auth",
@@ -149,27 +150,27 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 SITE_ID = 1
 
 # Allauth settings
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
-# EMAIL_HOST_PASSWORD = env("SENDGRID_API_KEY")
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = "apikey" # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # EMAIL_BACKEND = 'anymail.backends.sendgrid.EmailBackend'
 # ANYMAIL = {
 #     "SENDGRID_API_KEY": env("SENDGRID_API_KEY")
 # }
 
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = SENDGRID_API_KEY
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# SENDGRID_API_KEY = SENDGRID_API_KEY
+# SENDGRID_SANDBOX_MODE_IN_DEBUG = False
