@@ -142,6 +142,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.46.42:3000",
     "https://varsity-pq.herokuapp.com",
     "https://varsity-pq-frontend.vercel.app",
+    "https://varsitypq.com",
+    "https://www.varsitypq.com",
 ]
 
 SIMPLE_JWT = {

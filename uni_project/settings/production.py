@@ -4,6 +4,8 @@ import django_heroku
 ALLOWED_HOSTS = [
     "https://varsity-pq.herokuapp.com",
     "https://varsity-pq-frontend.vercel.app",
+    "varsitypq.com",
+    "www.varsitypq.com",
 ]
 
 DEBUG = False
