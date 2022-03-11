@@ -4,6 +4,7 @@ from dj_rest_auth.serializers import UserDetailsSerializer
 
 User = get_user_model()
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

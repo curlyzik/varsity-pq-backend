@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
     "rest_framework",
-    'djoser',
+    "djoser",
     "rest_framework.authtoken",
     "dj_rest_auth",
     "corsheaders",
@@ -162,11 +162,11 @@ EMAIL_USE_TLS = True
 
 
 DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': 'password-reset-confirm/{uid}/{token}',
-    'SERIALIZERS': {},
-    'PERMISSIONS': {
-        'password_reset': ['rest_framework.permissions.AllowAny'],
-    }
+    "PASSWORD_RESET_CONFIRM_URL": "password-reset-confirm/{uid}/{token}",
+    "SERIALIZERS": {},
+    "PERMISSIONS": {
+        "password_reset": ["rest_framework.permissions.AllowAny"],
+    },
 }
 
-DEFAULT_FROM_EMAIL = '<contact@varsitypq.com>'
+DEFAULT_FROM_EMAIL = "<contact@varsitypq.com>"
