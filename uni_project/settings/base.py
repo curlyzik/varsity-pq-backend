@@ -33,10 +33,6 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "dj_rest_auth",
     "corsheaders",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "dj_rest_auth.registration",
 ]
 
 MIDDLEWARE = [
@@ -152,11 +148,6 @@ SIMPLE_JWT = {
 
 SITE_ID = 1
 
-# Allauth settings
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-
-
 # POST MARK EMAIL SERVICE PROVIDE
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = env(("EMAIL_HOST"))
@@ -165,4 +156,3 @@ EMAIL_HOST_PASSWORD = env(("EMAIL_HOST_PASSWORD"))
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
 
-# django console backend
