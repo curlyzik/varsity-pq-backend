@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
-    "anymail",
     "rest_framework",
     "rest_framework.authtoken",
     "dj_rest_auth",
@@ -159,7 +158,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 
 # POST MARK EMAIL SERVICE PROVIDE
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
