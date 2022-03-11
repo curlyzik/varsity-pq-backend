@@ -8,6 +8,8 @@ ALLOWED_HOSTS = [
     "https://varsity-pq-frontend.vercel.app",
 ]
 
+DOMAIN = settings.ALLOWED_HOSTS[1]
+
 DEBUG = False
 
 # Amazon S3 Configurations

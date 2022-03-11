@@ -10,3 +10,5 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+DOMAIN = settings.ALLOWED_HOSTS[1] + ":3000"

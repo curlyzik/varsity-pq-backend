@@ -2,6 +2,7 @@ import os
 import environ
 from datetime import timedelta
 from pathlib import Path
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -30,6 +31,7 @@ INSTALLED_APPS = [
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
     "rest_framework",
+    'djoser',
     "rest_framework.authtoken",
     "dj_rest_auth",
     "corsheaders",
@@ -127,7 +129,6 @@ JWT_AUTH_COOKIE = "my-app-auth"
 JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 
 REST_AUTH_SERIALIZERS = {
-    "PASSWORD_RESET_SERIALIZER": "users.serializers.CustomPasswordResetSerializer",
     "USER_DETAILS_SERIALIZER": "users.serializers.CustomUserDetailsSerializer",
 }
 
@@ -152,17 +153,20 @@ SIMPLE_JWT = {
 SITE_ID = 1
 
 # POST MARK EMAIL SERVICE PROVIDE
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = env(("EMAIL_HOST"))
-# EMAIL_HOST_USER = env(("EMAIL_HOST_USER"))
-# EMAIL_HOST_PASSWORD = env(("EMAIL_HOST_PASSWORD"))
-# EMAIL_PORT = 25
-# EMAIL_USE_TLS = True
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = env(("EMAIL_HOST"))
+EMAIL_HOST_USER = env(("EMAIL_HOST_USER"))
+EMAIL_HOST_PASSWORD = env(("EMAIL_HOST_PASSWORD"))
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = True
 
-EMAIL_BACKEND = 'postmarker.django.EmailBackend'
-POSTMARK = {
-    'TOKEN': env(("POST_MARK_SERVER_TOKEN")),
-    'TEST_MODE': True,
-    'VERBOSITY': 0,
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset-confirm/{uid}/{token}',
+    'SERIALIZERS': {},
+    'PERMISSIONS': {
+        'password_reset': ['rest_framework.permissions.AllowAny'],
+    }
 }
-DEFAULT_FROM_EMAIL = "contact@varsitypq.com"
+
+DEFAULT_FROM_EMAIL = '<contact@varsitypq.com>'
