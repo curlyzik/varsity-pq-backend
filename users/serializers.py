@@ -55,7 +55,7 @@ class CustomPasswordResetSerializer(PasswordResetSerializer):
         # Set some values to trigger the send_email method.
         opts = {
             "use_https": request.is_secure(),
-            "from_email": "varsitypq@gmail.com",
+            "from_email": "contact@varsitypq.com",
             "request": request,
             "html_email_template_name": "registration/password_reset_key.html",
             "email_template_name": "registration/password_reset_key.html",
