@@ -129,6 +129,7 @@ REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "users.serializers.CustomUserDetailsSerializer",
 }
 
+# dj-rest-auth settings
 OLD_PASSWORD_FIELD_ENABLED = True
 
 CORS_ALLOWED_ORIGINS = [
