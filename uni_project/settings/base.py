@@ -160,7 +160,7 @@ SITE_ID = 1
 
 EMAIL_BACKEND = 'postmarker.django.EmailBackend'
 POSTMARK = {
-    'TOKEN': '9135bc4c-9a2e-45ea-9da5-d5581315df5f',
+    'TOKEN': env(("POST_MARK_SERVER_TOKEN")),
     'TEST_MODE': True,
     'VERBOSITY': 0,
 }
