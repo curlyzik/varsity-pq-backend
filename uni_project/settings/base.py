@@ -150,10 +150,17 @@ SIMPLE_JWT = {
 SITE_ID = 1
 
 # POST MARK EMAIL SERVICE PROVIDE
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = env(("EMAIL_HOST"))
-EMAIL_HOST_USER = env(("EMAIL_HOST_USER"))
-EMAIL_HOST_PASSWORD = env(("EMAIL_HOST_PASSWORD"))
-EMAIL_PORT = 25
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = env(("EMAIL_HOST"))
+# EMAIL_HOST_USER = env(("EMAIL_HOST_USER"))
+# EMAIL_HOST_PASSWORD = env(("EMAIL_HOST_PASSWORD"))
+# EMAIL_PORT = 25
+# EMAIL_USE_TLS = True
+
+EMAIL_BACKEND = 'postmarker.django.EmailBackend'
+POSTMARK = {
+    'TOKEN': '9135bc4c-9a2e-45ea-9da5-d5581315df5f',
+    'TEST_MODE': True,
+    'VERBOSITY': 0,
+}
 
