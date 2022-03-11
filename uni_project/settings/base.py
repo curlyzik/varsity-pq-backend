@@ -53,7 +53,8 @@ ROOT_URLCONF = "uni_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        # "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -126,7 +127,7 @@ JWT_AUTH_COOKIE = "my-app-auth"
 JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 
 REST_AUTH_SERIALIZERS = {
-    "PASSWORD_RESET_SERIALIZER": "users.serializers.CustomPasswordResetSerializer",
+    # "PASSWORD_RESET_SERIALIZER": "users.serializers.CustomPasswordResetSerializer",
     "USER_DETAILS_SERIALIZER": "users.serializers.CustomUserDetailsSerializer",
 }
 
@@ -164,4 +165,4 @@ POSTMARK = {
     'TEST_MODE': True,
     'VERBOSITY': 0,
 }
-
+DEFAULT_FROM_EMAIL = "contact@varsitypq.com"

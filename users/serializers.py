@@ -37,29 +37,29 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
         ]
 
 
-class CustomPasswordResetSerializer(PasswordResetSerializer):
-    @property
-    def password_reset_form_class(self):
-        return PasswordResetForm
+# class CustomPasswordResetSerializer(PasswordResetSerializer):
+#     @property
+#     def password_reset_form_class(self):
+#         return PasswordResetForm
 
-    def get_email_options(self):
-        return {
-            "domain_override": settings.ALLOWED_HOSTS[1],
-            # "extra_email_context":{
-            #     "domain": "domain nigga"
-            # },
-        }
+#     def get_email_options(self):
+#         return {
+#             "domain_override": settings.ALLOWED_HOSTS[1],
+#             # "extra_email_context":{
+#             #     "domain": "domain nigga"
+#             # },
+#         }
 
-    def save(self):
-        request = self.context.get("request")
-        # Set some values to trigger the send_email method.
-        opts = {
-            "use_https": request.is_secure(),
-            "from_email": "contact@varsitypq.com",
-            "request": request,
-            "html_email_template_name": "registration/password_reset_key.html",
-            "email_template_name": "registration/password_reset_key.html",
-        }
+#     def save(self):
+#         request = self.context.get("request")
+#         # Set some values to trigger the send_email method.
+#         opts = {
+#             "use_https": request.is_secure(),
+#             "from_email": "contact@varsitypq.com",
+#             "request": request,
+#             "html_email_template_name": "registration/password_reset_key.html",
+#             "email_template_name": "registration/password_reset_key.html",
+#         }
 
-        opts.update(self.get_email_options())
-        self.reset_form.save(**opts)
+#         opts.update(self.get_email_options())
+#         self.reset_form.save(**opts)
