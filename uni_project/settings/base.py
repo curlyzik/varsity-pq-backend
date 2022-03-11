@@ -170,3 +170,4 @@ DJOSER = {
 }
 
 DEFAULT_FROM_EMAIL = "<contact@varsitypq.com>"
+SITE_NAME = "Varsity PQ"
