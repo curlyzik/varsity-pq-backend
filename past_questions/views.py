@@ -269,7 +269,7 @@ class PastQuestionApiView(views.APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request):
-        # get the to you want to create pas question for
+        # get the course you want to create past question for
         course = int(request.data.get("course"))
         try:
             course = Course.objects.get(pk=course, author=request.user)
@@ -287,15 +287,16 @@ class PastQuestionApiView(views.APIView):
 
         file = request.data.get("file")
         author = request.user
-
         past_question = PastQuestion(file=file, course=course, author=author)
-
-        # check if the past question you're trying to create already exists for that course
-        if past_question.course.id == course.id:
+            
+        # check if past question already exists with that course
+        if PastQuestion.objects.filter(course=course).exists():
             return Response(
-                data={"message": "Past question for this course is already created"},
+                data={
+                    "message": "Cannot create course that already exists"
+                },
                 status=status.HTTP_400_BAD_REQUEST,
-            )
+            ) 
 
         past_question.save()
         serializer = PastQuestionSerializer(past_question)

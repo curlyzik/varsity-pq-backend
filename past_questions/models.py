@@ -5,7 +5,7 @@ User = get_user_model()
 
 
 def pq_file_upload_path(instance, filename):
-    return f"{instance.course.university}/{instance.course.department}/{instance.course.year}/{instance.course.level}/{instance.course.semester}/{instance.course.course_code}{filename}"
+    return f"{instance.course.university}/{instance.course.department}/{instance.course.year}/{instance.course.level}/{instance.course.semester}/{instance.course.course_code}/{filename}"
 
 
 class University(models.Model):
