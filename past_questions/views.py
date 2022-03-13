@@ -184,10 +184,6 @@ class CourseApiView(views.APIView, GetModelObjects):
 
     def post(self, request):
 
-        """
-        I took down this logic so as to allow
-        different users to create the same course
-        """
         check_if_course_already_exists = Course.objects.filter(
             name=request.data.get("name"),
             course_code=request.data.get("course_code"),
@@ -266,4 +262,23 @@ class PastQuestionViewSets(BaseViewSets):
     serializer_class = PastQuestionSerializer
 
 
-# class CreatePastQuestionApiView(views.APIView):
+class PastQuestionApiView(views.APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    """
+    List all Courses, or create a new course.
+    """
+
+    def post(self, request, course_pk):
+        try:
+            course = Course.objects.get(pk=course_pk)
+        except Course.DoesNotExist:
+            raise Http404
+        file = request.data.get("file")
+        author = request.user
+
+        past_question = PastQuestion.objects.create(
+            file=file, course=course, author=author
+        )
+
+        serializer = PastQuestionSerializer(past_question)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
