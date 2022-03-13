@@ -1,6 +1,7 @@
 from django.http import Http404
 from rest_framework import permissions, viewsets, views, status
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
 
 # from url_filter.integrations.drf import DjangoFilterBackend
 
@@ -162,6 +163,7 @@ class SemesterViewSets(BaseViewSets):
     serializer_class = SemesterSerializer
 
 
+# LIST ALL COURSES
 class CourseViewSets(BaseViewSets):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
@@ -264,21 +266,37 @@ class PastQuestionViewSets(BaseViewSets):
 
 class PastQuestionApiView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
-    """
-    List all Courses, or create a new course.
-    """
+    parser_classes = [MultiPartParser, FormParser]
 
-    def post(self, request, course_pk):
+    def post(self, request):
+        # get the to you want to create pas question for
+        course = int(request.data.get("course"))
         try:
-            course = Course.objects.get(pk=course_pk)
+            course = Course.objects.get(pk=course, author=request.user)
         except Course.DoesNotExist:
             raise Http404
+
+        # check if logged in user created the course
+        if request.user != course.author:
+            return Response(
+                data={
+                    "message": "You are not authorised to create past question for the course"
+                },
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+
         file = request.data.get("file")
         author = request.user
 
-        past_question = PastQuestion.objects.create(
-            file=file, course=course, author=author
-        )
+        past_question = PastQuestion(file=file, course=course, author=author)
 
+        # check if the past question you're trying to create already exists for that course
+        if past_question.course.id == course.id:
+            return Response(
+                data={"message": "Past question for this course is already created"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        past_question.save()
         serializer = PastQuestionSerializer(past_question)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

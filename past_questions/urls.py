@@ -20,4 +20,5 @@ urlpatterns = [
     path("department-update/<int:pk>/", views.DepartmentUpdateApiView.as_view()),
     path("courses/", views.CourseApiView.as_view()),
     path("courses/<int:pk>/", views.CourseDetailApiView.as_view()),
+    path("past-questions/", views.PastQuestionApiView.as_view()),
 ]

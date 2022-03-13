@@ -89,6 +89,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class PastQuestionSerializer(serializers.ModelSerializer):
     pq_details = serializers.SerializerMethodField()
+    author = CustomUserDetailsSerializer()
 
     class Meta:
         model = PastQuestion
