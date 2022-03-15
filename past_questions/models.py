@@ -92,6 +92,7 @@ class Course(models.Model):
         "Semester", on_delete=models.CASCADE, blank=True, null=True
     )
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    has_pastquestion = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
