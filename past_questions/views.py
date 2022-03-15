@@ -293,7 +293,7 @@ class PastQuestionApiView(views.APIView):
         if PastQuestion.objects.filter(course=course).exists():
             return Response(
                 data={
-                    "message": "Cannot past question that already exists with that this course"
+                    "message": "Cannot create past question that already exists with this course"
                 },
                 status=status.HTTP_400_BAD_REQUEST,
             ) 
