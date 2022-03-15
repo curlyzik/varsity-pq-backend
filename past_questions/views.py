@@ -298,6 +298,7 @@ class PastQuestionApiView(views.APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             ) 
 
+        course.has_pastquestion = True
         past_question.save()
         serializer = PastQuestionSerializer(past_question)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

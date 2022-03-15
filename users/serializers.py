@@ -31,5 +31,4 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
             "year",
             "email",
             "is_volunteer",
-            "is_staff",
         ]

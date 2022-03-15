@@ -72,6 +72,7 @@ class CourseSerializer(serializers.ModelSerializer):
             "course_details",
             "created_at",
             "updated_at",
+            "has_pastquestion",
         ]
 
     def get_course_details(self, obj):
@@ -107,5 +108,6 @@ class PastQuestionSerializer(serializers.ModelSerializer):
                 "year": obj.course.year.year,
                 "level": obj.course.level.level,
                 "semester": obj.course.semester.semester,
+                "has_pastquestion": obj.course.has_pastquestion,
             }
         ]
