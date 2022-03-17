@@ -268,6 +268,12 @@ class PastQuestionApiView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
 
+    # get all past questions created by the authenticated user
+    def get(self, request):
+        pq = PastQuestion.objects.filter(author=request.user).order_by("-updated_at")
+        serializer = CourseSerializer(pq, many=True)
+        return Response(serializer.data)
+
     def post(self, request):
         # get the course you want to create past question for
         course = int(request.data.get("course"))
