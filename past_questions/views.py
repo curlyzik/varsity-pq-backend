@@ -271,7 +271,7 @@ class PastQuestionApiView(views.APIView):
     # get all past questions created by the authenticated user
     def get(self, request):
         pq = PastQuestion.objects.filter(author=request.user).order_by("-updated_at")
-        serializer = CourseSerializer(pq, many=True)
+        serializer = PastQuestionSerializer(pq, many=True)
         return Response(serializer.data)
 
     def post(self, request):
