@@ -21,4 +21,5 @@ urlpatterns = [
     path("courses/", views.CourseApiView.as_view()),
     path("courses/<int:pk>/", views.CourseDetailApiView.as_view()),
     path("past-questions/", views.PastQuestionApiView.as_view()),
+    path("past-questions/<int:pk>/", views.PastQuestionDetailApiView.as_view()),
 ]

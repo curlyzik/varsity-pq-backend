@@ -294,7 +294,7 @@ class PastQuestionApiView(views.APIView):
         file = request.data.get("file")
         author = request.user
         past_question = PastQuestion(file=file, course=course, author=author)
-            
+
         # check if past question already exists with that course
         if PastQuestion.objects.filter(course=course).exists():
             return Response(
@@ -302,10 +302,39 @@ class PastQuestionApiView(views.APIView):
                     "message": "Cannot create past question that already exists with this course"
                 },
                 status=status.HTTP_400_BAD_REQUEST,
-            ) 
+            )
 
         course.has_pastquestion = True
         course.save()
         past_question.save()
         serializer = PastQuestionSerializer(past_question)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class PastQuestionDetailApiView(views.APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get_object(self, pk):
+        try:
+            return PastQuestion.objects.get(pk=pk)
+        except PastQuestion.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        pq = self.get_object(pk)
+        serializer = PastQuestionSerializer(pq)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        pq = self.get_object(pk)
+        pq.file = request.data.get("file")
+
+        if request.user == pq.author:
+            pq.save()
+            serializer = PastQuestionSerializer(pq)
+            return Response(serializer.data)
+        return Response(
+            data={"message": "unauthorized to edit past question"},
+            status=status.HTTP_401_UNAUTHORIZED,
+        )
