@@ -12,3 +12,5 @@ DATABASES = {
 }
 
 DOMAIN = settings.ALLOWED_HOSTS[1] + ":3000"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
