@@ -74,7 +74,7 @@ class GetModelObjects:
 class BaseViewSets(viewsets.ModelViewSet):
     # Solution from - https://stackoverflow.com/questions/35970970/django-rest-framework-permission-classes-of-viewset-method
     permission_classes_by_action = {
-        "create": [permissions.AllowAny],
+        "create": [permissions.IsAdminUser],
         "list": [permissions.AllowAny],
         "delete": [permissions.IsAdminUser],
         "update": [permissions.IsAdminUser],
