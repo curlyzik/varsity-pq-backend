@@ -1,6 +1,9 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from dj_rest_auth.serializers import UserDetailsSerializer, PasswordResetConfirmSerializer
+from dj_rest_auth.serializers import (
+    UserDetailsSerializer,
+    PasswordResetConfirmSerializer,
+)
 
 User = get_user_model()
 
@@ -32,6 +35,7 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
             "email",
             "is_volunteer",
         ]
+
 
 class CustomPasswordResetConfirmSerializer(PasswordResetConfirmSerializer):
     class Meta:
