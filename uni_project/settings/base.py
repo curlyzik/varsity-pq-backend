@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
     "rest_framework",
+    "drf_yasg",
     "djoser",
     "rest_framework.authtoken",
     "dj_rest_auth",
@@ -143,6 +144,7 @@ JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "users.serializers.CustomUserDetailsSerializer",
+    "PASSWORD_RESET_CONFIRM_SERIALIZER": "users.serializers.CustomPasswordResetConfirmSerializer",
 }
 
 OLD_PASSWORD_FIELD_ENABLED = True
