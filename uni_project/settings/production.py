@@ -12,10 +12,6 @@ DOMAIN = settings.ALLOWED_HOSTS[1]
 
 DEBUG = False
 
-
-# Static file configuration
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
 # POST MARK EMAIL SERVICE PROVIDE FOR PASSWORD RESET
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = env(("EMAIL_HOST"))
