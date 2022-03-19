@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
     "rest_framework",
-    "drf_yasg",
     "djoser",
     "rest_framework.authtoken",
     "dj_rest_auth",
