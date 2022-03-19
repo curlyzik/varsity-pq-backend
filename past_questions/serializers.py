@@ -22,14 +22,10 @@ class FacultySerializer(serializers.ModelSerializer):
 
 
 class UniversitySerializer(serializers.ModelSerializer):
-    faculty = FacultySerializer(many=True, read_only=True)
 
     class Meta:
         model = University
-        fields = ["id", "name", "address", "type", "faculty", "website"]
-
-    def get_faculty(self, obj):
-        return obj.faculty.name
+        fields = ["id", "name", "address", "type", "website"]
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -103,6 +99,7 @@ class PastQuestionSerializer(serializers.ModelSerializer):
                 "course": obj.course.name,
                 "course_code": obj.course.course_code,
                 "university": obj.course.university.name,
+                "university_type": obj.course.university.type,
                 "faculty": obj.course.department.faculty.name,
                 "department": obj.course.department.name,
                 "year": obj.course.year.year,

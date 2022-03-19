@@ -260,7 +260,7 @@ class CourseDetailApiView(views.APIView, GetModelObjects):
 
 
 class PastQuestionViewSets(BaseViewSets):
-    queryset = PastQuestion.objects.all()
+    queryset = PastQuestion.objects.order_by("-updated_at")
     serializer_class = PastQuestionSerializer
 
 
