@@ -12,11 +12,9 @@ DOMAIN = settings.ALLOWED_HOSTS[1]
 
 DEBUG = False
 
-# heroku configuration
-django_heroku.settings(locals())
 
 # Static file configuration
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # POST MARK EMAIL SERVICE PROVIDE FOR PASSWORD RESET
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -27,3 +25,6 @@ EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = "<contact@varsitypq.com>"
+
+# heroku configuration
+django_heroku.settings(locals())
