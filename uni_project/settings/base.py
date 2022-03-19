@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "dj_rest_auth",
     "corsheaders",
+    "cloudinary_storage",
+    "cloudinary",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
@@ -110,19 +113,29 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_ROOT = BASE_DIR / "media"
+
+# CLOUDINARY SETUP FOR FILE STORAGE
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.RawMediaCloudinaryStorage"
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": env(("CLOUDINARY_CLOUD_NAME")),
+    "API_KEY": env(("CLOUDINARY_API_KEY")),
+    "API_SECRET": env(("CLOUDINARY_API_SECRET")),
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# CUSTOM USER MODEL
 AUTH_USER_MODEL = "users.CustomUser"
+SITE_ID = 1
 
+# DJ-REST-AUTH SETTINGS
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("dj_rest_auth.jwt_auth.JWTCookieAuthentication",)
 }
-
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = "my-app-auth"
@@ -132,9 +145,15 @@ REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "users.serializers.CustomUserDetailsSerializer",
 }
 
-# dj-rest-auth settings
 OLD_PASSWORD_FIELD_ENABLED = True
 
+# SIMPLE_JWT SETTINGS
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
+}
+
+# CORSHEADERS SETTINGS
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.3000",
@@ -145,13 +164,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.varsitypq.com",
 ]
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=15),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
-}
-
-SITE_ID = 1
-
+# DJOSER SETTINGS
 DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password-reset-confirm/{uid}/{token}",
     "SERIALIZERS": {},
@@ -160,4 +173,5 @@ DJOSER = {
     },
 }
 
+# DEFAULT SITE NAME
 SITE_NAME = "Varsity PQ"
