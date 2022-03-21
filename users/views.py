@@ -82,13 +82,12 @@ class UsersUpdateApiView(APIView):
         user = self.get_object(pk)
         action = request.data.get("action")
 
-        print("state",action)
         # set user to admin
         if action == "set_admin":
             user.is_staff = True
             user.save()
             return Response(
-                data={"messgae": f"{user.full_name} updated to admin"},
+                data={"message": f"{user.full_name} updated to admin"},
                 status=status.HTTP_200_OK,
             )
 
@@ -97,7 +96,7 @@ class UsersUpdateApiView(APIView):
             user.is_staff = False
             user.save()
             return Response(
-                data={"messgae": f"{user.full_name} removed as admin"},
+                data={"message": f"{user.full_name} removed as admin"},
                 status=status.HTTP_200_OK,
             )
 
@@ -106,7 +105,7 @@ class UsersUpdateApiView(APIView):
             user.is_active = False
             user.save()
             return Response(
-                data={"messgae": f"{user.full_name} account deactivate"},
+                data={"message": f"{user.full_name} account deactivate"},
                 status=status.HTTP_200_OK,
             )
 
@@ -115,6 +114,6 @@ class UsersUpdateApiView(APIView):
             user.is_active = True
             user.save()
             return Response(
-                data={"messgae": f"{user.full_name} account activated"},
+                data={"message": f"{user.full_name} account activated"},
                 status=status.HTTP_200_OK,
             )
