@@ -10,5 +10,6 @@ urlpatterns = [
         PasswordResetConfirmView.as_view(),
         name="password_reset_confirm",
     ),
+    path("", views.VolunteersApiView.as_view()),
     path("update/<int:pk>/", views.UsersUpdateApiView.as_view()),
 ]

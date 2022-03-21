@@ -51,8 +51,8 @@ class VolunteerRequest(APIView):
         )
 
 
-class UsersApiView(APIView):
-    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+class VolunteersApiView(APIView):
+    permission_classes = [permissions.AllowAny]
 
     # get all volunteers
     def get(self, request):
@@ -63,6 +63,8 @@ class UsersApiView(APIView):
 
 # This class is to update user permissions
 class UsersUpdateApiView(APIView):
+    permission_classes = [permissions.IsAdminUser, permissions.IsAuthenticated]
+
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
