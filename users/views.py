@@ -80,10 +80,11 @@ class UsersUpdateApiView(APIView):
     # set and remove volunteer as admin, active
     def put(self, request, pk):
         user = self.get_object(pk)
-        volunteer_state = request.data.get("volunteer_state")
+        action = request.data.get("action")
 
+        print("state",action)
         # set user to admin
-        if volunteer_state == "set_admin":
+        if action == "set_admin":
             user.is_staff = True
             user.save()
             return Response(
@@ -92,7 +93,7 @@ class UsersUpdateApiView(APIView):
             )
 
         # set remove as admin
-        if volunteer_state == "remove_admin":
+        if action == "remove_admin":
             user.is_staff = False
             user.save()
             return Response(
@@ -101,7 +102,7 @@ class UsersUpdateApiView(APIView):
             )
 
         # deactivate user account
-        if volunteer_state == "deactivate_user":
+        if action == "deactivate_user":
             user.is_active = False
             user.save()
             return Response(
@@ -110,7 +111,7 @@ class UsersUpdateApiView(APIView):
             )
 
         # activate user account
-        if volunteer_state == "activate_user":
+        if action == "activate_user":
             user.is_active = True
             user.save()
             return Response(
