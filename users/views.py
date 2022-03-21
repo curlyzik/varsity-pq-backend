@@ -2,9 +2,10 @@ import random
 import string
 
 from django.contrib.auth import get_user_model
+from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework import status, permissions
 
 from users.serializers import UserSerializer
 
@@ -48,3 +49,69 @@ class VolunteerRequest(APIView):
             status=status.HTTP_201_CREATED,
             data={"password": password, "data": serializer.data},
         )
+
+
+class UsersApiView(APIView):
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+
+    # get all volunteers
+    def get(self, request):
+        users = User.objects.filter(is_volunteer=True)
+        serializer = UserSerializer(users, many=True)
+        return Response(data=serializer.data)
+
+
+# This class is to update user permissions
+class UsersUpdateApiView(APIView):
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    # get single user
+    def get(self, request, pk):
+        user = self.get_object(pk)
+        serializer = UserSerializer(user)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    # set and remove volunteer as admin, active
+    def put(self, request, pk):
+        user = self.get_object(pk)
+        volunteer_state = request.data.get("volunteer_state")
+
+        # set user to admin
+        if volunteer_state == "set_admin":
+            user.is_staff = True
+            user.save()
+            return Response(
+                data={"messgae": f"{user.full_name} updated to admin"},
+                status=status.HTTP_200_OK,
+            )
+
+        # set remove as admin
+        if volunteer_state == "remove_admin":
+            user.is_staff = False
+            user.save()
+            return Response(
+                data={"messgae": f"{user.full_name} removed as admin"},
+                status=status.HTTP_200_OK,
+            )
+
+        # deactivate user account
+        if volunteer_state == "deactivate_user":
+            user.is_active = False
+            user.save()
+            return Response(
+                data={"messgae": f"{user.full_name} account deactivate"},
+                status=status.HTTP_200_OK,
+            )
+
+        # activate user account
+        if volunteer_state == "activate_user":
+            user.is_active = True
+            user.save()
+            return Response(
+                data={"messgae": f"{user.full_name} account activated"},
+                status=status.HTTP_200_OK,
+            )

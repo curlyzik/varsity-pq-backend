@@ -19,6 +19,9 @@ class UserSerializer(serializers.ModelSerializer):
             "year",
             "email",
             "is_volunteer",
+            "is_volunteer",
+            "is_staff",
+            "is_active",
         ]
 
 
@@ -34,6 +37,8 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
             "year",
             "email",
             "is_volunteer",
+            "is_staff",
+            "is_active",
         ]
 
 

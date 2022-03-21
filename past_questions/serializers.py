@@ -22,7 +22,6 @@ class FacultySerializer(serializers.ModelSerializer):
 
 
 class UniversitySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = University
         fields = ["id", "name", "address", "type", "website"]
