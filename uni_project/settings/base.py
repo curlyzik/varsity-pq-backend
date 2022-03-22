@@ -31,8 +31,8 @@ INSTALLED_APPS = [
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
     "rest_framework",
-    "djoser",
     "rest_framework.authtoken",
+    "djoser",
     "dj_rest_auth",
     "corsheaders",
     "cloudinary_storage",
@@ -138,7 +138,10 @@ SITE_ID = 1
 
 # DJ-REST-AUTH SETTINGS
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": ("dj_rest_auth.jwt_auth.JWTCookieAuthentication",)
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    )
 }
 
 REST_USE_JWT = True
