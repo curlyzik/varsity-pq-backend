@@ -96,7 +96,7 @@ class BaseViewSets(viewsets.ModelViewSet):
 class UniversityViewSets(BaseViewSets):
     queryset = University.objects.all()
     serializer_class = UniversitySerializer
-    
+
     permission_classes_by_action = {
         "create": [permissions.IsAdminUser],
         "list": [permissions.IsAdminUser],
