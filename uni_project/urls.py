@@ -15,9 +15,7 @@ urlpatterns = (
 )
 
 # add url path base on environment
-if settings.DEBUG:
+if settings.DEBUG == False:
     urlpatterns += path("admin/", admin.site.urls),
-else:
-    urlpatterns -= path("admin/", admin.site.urls),
 
 
