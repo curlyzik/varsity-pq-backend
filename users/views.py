@@ -65,7 +65,7 @@ class VolunteersApiView(APIView):
 
 # This class is to update user permissions
 class UsersUpdateApiView(APIView):
-    permission_classes = [permissions.IsAdminUser, permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser]
 
     def get_object(self, pk):
         try:
@@ -93,7 +93,7 @@ class UsersUpdateApiView(APIView):
                 status=status.HTTP_200_OK,
             )
 
-        # set remove as admin
+        # remove as admin
         if action == "remove_admin":
             user.is_staff = False
             user.save()
@@ -119,3 +119,11 @@ class UsersUpdateApiView(APIView):
                 data={"message": f"{user.full_name} account activated"},
                 status=status.HTTP_200_OK,
             )
+
+    def delete(self, request, pk):
+        user = self.get_object(pk)
+        user.delete()
+        return Response(
+            data={"message": f"{user.full_name} account deleted"},
+            status=status.HTTP_200_OK,
+        )
