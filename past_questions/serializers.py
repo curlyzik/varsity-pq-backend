@@ -85,11 +85,10 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class PastQuestionSerializer(serializers.ModelSerializer):
     pq_details = serializers.SerializerMethodField()
-    author = CustomUserDetailsSerializer()
 
     class Meta:
         model = PastQuestion
-        fields = ["id", "file", "author", "pq_details", "created_at", "updated_at"]
+        fields = ["id", "file", "pq_details", "created_at", "updated_at"]
 
     def get_pq_details(self, obj):
         return [
@@ -104,6 +103,7 @@ class PastQuestionSerializer(serializers.ModelSerializer):
                 "year": obj.course.year.year,
                 "level": obj.course.level.level,
                 "semester": obj.course.semester.semester,
+                "author": obj.author.full_name,
                 "has_pastquestion": obj.course.has_pastquestion,
             }
         ]
