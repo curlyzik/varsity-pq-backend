@@ -78,6 +78,7 @@ class BaseViewSets(viewsets.ModelViewSet):
         "list": [permissions.AllowAny],
         "delete": [permissions.IsAdminUser],
         "update": [permissions.IsAdminUser],
+        "partial_update": [permissions.IsAdminUser],
         "destroy": [permissions.IsAdminUser],
     }
 
@@ -102,6 +103,7 @@ class UniversityViewSets(BaseViewSets):
         "list": [permissions.IsAdminUser],
         "delete": [permissions.IsAdminUser],
         "update": [permissions.IsAdminUser],
+        "partial_update": [permissions.IsAdminUser],
         "destroy": [permissions.IsAdminUser],
     }
 
@@ -276,6 +278,7 @@ class PastQuestionViewSets(BaseViewSets):
         "list": [permissions.IsAdminUser],
         "delete": [permissions.IsAdminUser],
         "update": [permissions.IsAdminUser],
+        "partial_update": [permissions.IsAdminUser],
         "destroy": [permissions.IsAdminUser],
     }
 
