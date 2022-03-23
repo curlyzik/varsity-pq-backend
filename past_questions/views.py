@@ -271,6 +271,14 @@ class PastQuestionViewSets(BaseViewSets):
     queryset = PastQuestion.objects.order_by("-updated_at")
     serializer_class = PastQuestionSerializer
 
+    permission_classes_by_action = {
+        "create": [permissions.IsAdminUser],
+        "list": [permissions.IsAdminUser],
+        "delete": [permissions.IsAdminUser],
+        "update": [permissions.IsAdminUser],
+        "destroy": [permissions.IsAdminUser],
+    }
+
 
 class PastQuestionApiView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
