@@ -1,5 +1,6 @@
 import random
 import string
+from django.conf import settings
 
 from django.contrib.auth import get_user_model
 from django.http import Http404
@@ -52,11 +53,12 @@ class VolunteerRequest(APIView):
 
 
 class VolunteersApiView(APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny or permissions.IsAuthenticated]
 
     # get all volunteers
     def get(self, request):
-        users = User.objects.filter(is_volunteer=True)
+        print(request.user)
+        users = User.objects.filter(is_volunteer=True).exclude(email=request.user)
         serializer = UserSerializer(users, many=True)
         return Response(data=serializer.data)
 

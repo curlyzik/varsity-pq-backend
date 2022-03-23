@@ -5,7 +5,6 @@ from django.urls import include, path
 
 urlpatterns = (
     [
-        path("admin/", admin.site.urls),
         path("", include("past_questions.urls")),
         path("users/", include("users.urls")),
         path("dj-rest-auth/", include("dj_rest_auth.urls")),
@@ -14,3 +13,11 @@ urlpatterns = (
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 )
+
+# add url path base on environment
+if settings.DEBUG:
+    urlpatterns += path("admin/", admin.site.urls),
+else:
+    urlpatterns -= path("admin/", admin.site.urls),
+
+
