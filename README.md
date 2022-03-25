@@ -4,7 +4,7 @@
 - <a href="#built-with">Built With<a/>
 - <a href="#license">License<a/>
 - <a href="#author">About author<a/>
-- <a href="#support">About author<a/>
+- <a href="#support">Support<a/>
  
  ## <p id="introduction">Varsity PQ Backend</p>
 
