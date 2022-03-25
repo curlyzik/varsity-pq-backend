@@ -1,5 +1,5 @@
 - <a href="#introduction">Introduction<a/>
-- -- <a href="#api">Our API<a/>
+- <a href="#api">Our API<a/>
 - <a href="#contribution">Contribution<a/>
 - <a href="#built-with">Built With<a/>
 - <a href="#license">License<a/>
