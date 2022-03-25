@@ -49,8 +49,10 @@ CLOUDINARY_API_SECRET=
 ```bash
 python manage.py runserver --settings=uni_project.settings.development
 ```
+You are all set! Open [localhost:8000](http://localhost:8000/) to see the app.
 
-You are all set! Open [localhost:8000](http://localhost:3000/) to see the app.
+6. Push to your repo and open a pull request
+
 
 ## 💻 Built with
 
