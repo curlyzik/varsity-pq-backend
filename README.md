@@ -18,9 +18,7 @@ This is the Backend Repo to Varsity PQ [Read more here to understand better 📖
  ## <p id="contribution">🛠️ Contributing, Installation Steps</p>
 
 1. Fork and Clone the repository
-<p>
-Fork the [repository](https://github.com/curlyzik/varsity-pq-backend) first and then clone it.
-</p>
+  - Fork the [repository](https://github.com/curlyzik/varsity-pq-backend) first and then clone it.
 
 2. Change the working directory
 
@@ -38,12 +36,8 @@ virtualenv venv
 pip install -r requirements.txt
 ```
 5. Create `.env` file
-  <p>
-  Create `.env` file in <a href="https://github.com/curlyzik/varsity-pq-backend/tree/main/uni_project/settings">uni_project/settings</a> and add your variables.
-  </p>
-  <p>
-   Generate SECRET_KEY from <a href="https://djecrety.ir/">Djecrety</a>
-  </p>
+  - Create `.env` file in <a href="https://github.com/curlyzik/varsity-pq-backend/tree/main/uni_project/settings">uni_project/settings</a> and add your variables.
+  - Generate SECRET_KEY from <a href="https://djecrety.ir/">Djecrety</a>
 
 ```bash
 SECRET_KEY=
