@@ -11,7 +11,7 @@ This is the Backend Repo to Varsity PQ [Read more here to understand better 📖
 
 1. Fork and Clone the repository
 
-Fork the [repository](https://github.com/curlyzik/varsity-pq-backend) first and then clone it.
+ - Fork the [repository](https://github.com/curlyzik/varsity-pq-backend) first and then clone it.
 
 2. Change the working directory
 
