@@ -1,4 +1,4 @@
-- <a href="#introduction">Introduction<a/>
+<a href="#introduction">Introduction<a/>
 
  ## <p id="introduction">Varsity PQ Backend</p>
 
