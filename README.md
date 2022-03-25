@@ -31,8 +31,8 @@ cd varsity-pq-backend
 virtualenv venv
 ```
  - Switch to virtual env
-   - For Linux users ```bash source env/bin/activate ```
-   - For Windows users ```bash env\Source\activate ```
+   - For Linux users ``` source env/bin/activate ```
+   - For Windows users ``` env\Source\activate ```
  
 4. Install project's requirements
 
