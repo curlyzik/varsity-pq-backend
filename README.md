@@ -5,7 +5,7 @@ This is the Backend Repo to Varsity PQ [Read more here to understand better 📖
 ## 🚀 Try out Varsity PQ API
 - [Nigeria University Past Questions](https://rapidapi.com/curlyzik/api/nigeria-university-past-questions/): This is the all in one API where students from various universities / higher institutions could get past questions to different courses of their discipline. This API serves over 300+ curated past questions from 160+ universites in Nigeria.
 
-- [Nigeria Universities](https://rapidapi.com/curlyzik/api/nigeria-universites/): Retrieve information about Nigeria’s universities
+- [Nigeria Universities](https://rapidapi.com/curlyzik/api/nigeria-universites/): Retrieve information about Nigeria universities
 
 <!-- ## 🛠️ Contributing, Installation Steps
 
