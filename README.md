@@ -7,55 +7,50 @@ This is the Backend Repo to Varsity PQ [Read more here to understand better 📖
 
 - [Nigeria Universities](https://rapidapi.com/curlyzik/api/nigeria-universites/): Retrieve information about Nigeria universities
 
-<!-- ## 🛠️ Contributing, Installation Steps
+## 🛠️ Contributing, Installation Steps
 
 1. Fork and Clone the repository
 
-Fork the [repository](https://github.com/curlyzik/varsity-pq-frontend) first and then clone it.
+Fork the [repository](https://github.com/curlyzik/varsity-pq-backend) first and then clone it.
 
-2. Follow the [Contributing and Installation Steps](https://github.com/curlyzik/varsity-pq-backend) of the backend repository
-
-3. Change the working directory
+2. Change the working directory
 
 ```bash
-cd varsity-pq-frontend
+cd varsity-pq-backend
 ```
-
-4. Install dependencies
+3. Create virtual environment
 
 ```bash
-npm install
+virtualenv venv
 ```
-
-5. Create `.env` file in root and add your variables
+4. Install project's requirements
 
 ```bash
-NEXT_PUBLIC_RAPIDAPI_KEY=
+pip install -r requirements.txt
+```
+5. Create `.env` file
+Create `.env` file in [uni_project/settings](https://github.com/curlyzik/varsity-pq-backend/tree/main/uni_project/settings) and add your variables.
+- Generate SECRET_KEY from [Djecrety](https://djecrety.ir/)
 
-NEXT_PUBLIC_NEWS_API_HOST=google-search3.p.rapidapi.com
-NEXT_PUBLIC_NEWS_API_URL=https://google-search3.p.rapidapi.com/api/v1
+```bash
+SECRET_KEY=
 
-NEXT_PUBLIC_UNIVERSITY_API_HOST=nigeria-universites.p.rapidapi.com
-NEXT_PUBLIC_UNIVERSITY_API_URL=https://nigeria-universites.p.rapidapi.com
+EMAIL_HOST=you can use post mark
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
 
-NEXT_PUBLIC_PQ_API_HOST=nigeria-university-past-questions.p.rapidapi.com
-NEXT_PUBLIC_PQ_API_URL=https://nigeria-university-past-questions.p.rapidapi.com
-
-
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
-NEXT_PUBLIC_EMAILJS_USER_ID=
-
-NEXT_PUBLIC_API_URL=http://localhost:8000
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 ```
 
 5. Run the app
 
 ```bash
-npm run dev
+python manage.py runserver --settings=uni_project.settings.development
 ```
 
-You are all set! Open [localhost:3000](http://localhost:3000/) to see the app. -->
+You are all set! Open [localhost:8000](http://localhost:3000/) to see the app.
 
 ## 💻 Built with
 
