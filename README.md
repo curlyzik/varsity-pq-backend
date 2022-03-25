@@ -1,15 +1,21 @@
 <a href="#introduction">Introduction<a/>
-
+<a href="#api">Our API<a/>
+<a href="#contribution">Contribution<a/>
+<a href="#built-with">Built With<a/>
+<a href="#license">License<a/>
+<a href="#author">About author<a/>
+<a href="#support">About author<a/>
+ 
  ## <p id="introduction">Varsity PQ Backend</p>
 
 This is the Backend Repo to Varsity PQ [Read more here to understand better 📖](https://github.com/curlyzik/varsity-pq-frontend)
 
-## 🚀 Try out Varsity PQ API
+ ## <p id="api">🚀 Try out Varsity PQ API</p>
 - [Nigeria University Past Questions](https://rapidapi.com/curlyzik/api/nigeria-university-past-questions/): This is the all in one API where students from various universities / higher institutions could get past questions to different courses of their discipline. This API serves over 300+ curated past questions from 160+ universites in Nigeria.
 
 - [Nigeria Universities](https://rapidapi.com/curlyzik/api/nigeria-universites/): Retrieve information about Nigeria universities
 
-## 🛠️ Contributing, Installation Steps
+ ## <p id="contribution">🛠️ Contributing, Installation Steps</p>
 
 1. Fork and Clone the repository
 
@@ -56,7 +62,7 @@ You are all set! Open [localhost:8000](http://localhost:8000/) to see the app.
 6. Push to your repo and open a pull request
 
 
-## 💻 Built with
+ ## <p id="built-with">💻 Built with</p>
 
 - [Django](https://www.djangoproject.com/)
 - [Django REST framework](https://www.django-rest-framework.org/): for building API
@@ -67,11 +73,11 @@ You are all set! Open [localhost:8000](http://localhost:8000/) to see the app.
 - [django-cleanup](https://pypi.org/project/django-cleanup/) django-cleanup app automatically deletes files for FileField, ImageField and subclasses
 - [Heroku](http://heroku.com/): for hosting
 
-## 🛡️ License
+ ## <p id="license">🛡️ License</p>
 
 This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
 
-## 👨‍💻 Author
+ ## <p id="author">👨‍💻 Author</p>
 
 ### 👤 Isaac Nzekwe
 
@@ -79,7 +85,7 @@ This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) fi
 - Github: [@curlyzik](https://github.com/curlyzik)
 - LinkedIn: [@nzekwe-isaac](https://www.linkedin.com/in/nzekwe-isaac/)
 
-## 🙏 Support
+ ## <p id="support">🙏 Support</p>
 
 This project needs a ⭐️ from you. Please don't forget to leave a star ⭐️
 
