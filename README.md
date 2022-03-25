@@ -72,7 +72,8 @@ You are all set! Open [localhost:8000](http://localhost:8000/) to see the app.
 - [Postmark](https://postmarkapp.com/): for sending emails
 - [Django Cloudinary Storage](https://pypi.org/project/django-cloudinary-storage/): Django Cloudinary Storage is a Django package that facilitates integration with Cloudinary by implementing Django Storage API.
 - [django-cleanup](https://pypi.org/project/django-cleanup/) django-cleanup app automatically deletes files for FileField, ImageField and subclasses
-- [Heroku](http://heroku.com/): for hosting
+- [Rapid API](https://rapidapi.com/hub)
+ - [Heroku](http://heroku.com/): for hosting
 
  ## <p id="license">🛡️ License</p>
 
