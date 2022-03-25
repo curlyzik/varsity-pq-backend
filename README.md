@@ -30,6 +30,10 @@ cd varsity-pq-backend
 ```bash
 virtualenv venv
 ```
+ - Switch to virtual env
+   - For Linux users ```bash source env/bin/activate ```
+   - For Windows users ```bash env\Source\activate ```
+ 
 4. Install project's requirements
 
 ```bash
@@ -50,7 +54,6 @@ CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
 ```
-
 5. Run the app
 
 ```bash
@@ -58,8 +61,7 @@ python manage.py runserver --settings=uni_project.settings.development
 ```
 You are all set! Open [localhost:8000](http://localhost:8000/) to see the app.
 
-6. Push to your repo and open a pull request
-
+6. Make commits,push to your repo and open a pull request
 
  ## <p id="built-with">💻 Built with</p>
 
