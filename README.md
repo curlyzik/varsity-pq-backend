@@ -1,10 +1,10 @@
-<a href="#introduction">Introduction<a/>
-<a href="#api">Our API<a/>
-<a href="#contribution">Contribution<a/>
-<a href="#built-with">Built With<a/>
-<a href="#license">License<a/>
-<a href="#author">About author<a/>
-<a href="#support">About author<a/>
+- <a href="#introduction">Introduction<a/>
+- <a href="#api">Our API<a/>
+- <a href="#contribution">Contribution<a/>
+- <a href="#built-with">Built With<a/>
+- <a href="#license">License<a/>
+- <a href="#author">About author<a/>
+- <a href="#support">About author<a/>
  
  ## <p id="introduction">Varsity PQ Backend</p>
 
