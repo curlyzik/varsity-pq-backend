@@ -37,8 +37,10 @@ virtualenv venv
 pip install -r requirements.txt
 ```
 5. Create `.env` file
+``` bash
 Create `.env` file in [uni_project/settings](https://github.com/curlyzik/varsity-pq-backend/tree/main/uni_project/settings) and add your variables.
 - Generate SECRET_KEY from [Djecrety](https://djecrety.ir/)
+```
 
 ```bash
 SECRET_KEY=
