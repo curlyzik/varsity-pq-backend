@@ -3,10 +3,7 @@ from rest_framework import permissions, viewsets, views, status
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 
-# from url_filter.integrations.drf import DjangoFilterBackend
-
-from django_url_filter.url_filter.integrations.drf import DjangoFilterBackend
-
+from django_filters import rest_framework as filters
 from past_questions.models import (
     Course,
     Department,
@@ -111,13 +108,13 @@ class UniversityViewSets(BaseViewSets):
 class FacultyViewSets(BaseViewSets):
     queryset = Faculty.objects.all()
     serializer_class = FacultySerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [filters.DjangoFilterBackend]
 
 
 class DepartmentViewSets(BaseViewSets):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [filters.DjangoFilterBackend]
     filter_fields = ["faculty"]
 
 
@@ -177,7 +174,7 @@ class SemesterViewSets(BaseViewSets):
 class CourseViewSets(BaseViewSets):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [filters.DjangoFilterBackend]
     filter_fields = ["university", "faculty", "department", "level", "year", "semester"]
 
 

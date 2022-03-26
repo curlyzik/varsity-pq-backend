@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "past_questions.apps.PastQuestionsConfig",
     # Third party apps
+    "django_filters",
     "rest_framework",
     "rest_framework.authtoken",
     "djoser",
@@ -141,7 +142,8 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-    )
+    ),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
 REST_USE_JWT = True
