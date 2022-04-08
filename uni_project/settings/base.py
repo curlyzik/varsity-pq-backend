@@ -167,7 +167,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.3000",
-    "http://192.168.43.42:3000",
+    "http://192.168.195.42:3000",
     "https://varsity-pq.herokuapp.com",
     "https://varsity-pq-frontend.vercel.app",
     "https://varsitypq.com",
